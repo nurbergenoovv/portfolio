@@ -1,0 +1,136 @@
+:root {
+	--dark: #161B22;
+	--background: var(--dark);
+	--text: #F5F5F5;
+	--border: #27CF7E;
+}
+.tagScrollers {
+	width: 100%;
+	overflow: hidden;
+}
+
+/*	POSSIBLY UPDATE COLORS IN THE GRADIENT
+		TO MATCH THE PROJECTS DESIGN SYSTEM
+*/
+.tagScroller {
+	display: grid;
+	gap: 1rem;
+	mask: linear-gradient(90deg, #0000, var(--background) 15%, var(--background) 85%, #0000);
+}
+
+.tagList {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	/*	IF THE GAP IS CHANGED, DON'T FORGET TO CHANGE 
+			THE TRANSFORM VALUE IN THE SCROLL ANIMATION
+			AT THE END OF THE STYLING
+	*/
+	gap: 1rem;
+}
+
+/*	IF THE USERS PREFERS REDUCED MOTION
+		PRESENT THEM WITH A HOROZONTAL LIST
+		OF ALL ELEMENTS AND GIVE THEM THE
+		OPTION TO MANUALLY SCROLL BY SWIPING
+*/
+@media (prefers-reduced-motion) {
+	.tagList {
+		flex-flow: row nowrap;
+		overflow: auto;
+		scrollbar-width: none;
+		scrollbar-color: transparent transparent;
+	}
+	.tagList::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.tagList::-webkit-scrollbar-thumb {
+		background: transparent;
+	}
+	.tagList::-webkit-scrollbar {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+}
+
+/*	BASIC STYLING OF THE LIST ITEMS
+		FOR DEMO PURPOSES. MOST PROPERTIES
+		SHOULD BE KEPT AS IS BUT PROBABLY
+		UPDATE THE VALUE FOR font-family
+		AND border
+*/
+.tagList li {
+	font-family: system-ui;
+	font-size: 1.125rem;
+	line-height: 1;
+	padding: 0.625rem 1.375rem;
+	border: 2px solid var(--border);
+	border-radius: 10ch;
+	white-space: nowrap;
+	transition: all 0.4s ease-in-out;
+}
+.tagList li:hover {
+	color: var(--dark);
+	background: var(--border);
+	transition: all 0.4s ease-in-out;
+}
+
+/*	THE DURATION IS SET FROM A CUSTOM PROPERTY
+		CALCULATED IN THE SCRIPT AS IT'S ONLY NEEDED
+		IF THE ANIMATION SHOULD RUN, WHICH IS ALSO
+		CHECKED BY THE SCRIPT
+
+		THE DIRECTION IS SET TO normal AS DEFULT
+		AND THEN SET TO reverse	FOR EVERY OTHER SCROLLER
+*/
+.tagScroller.scrolling .tagList {
+	width: max-content;
+	flex-wrap: nowrap;
+	animation: horizontal-scroll var(--duration) var(--direction, normal) linear infinite;
+}
+
+.tagScroller.scrolling .tagList:nth-child(even) {
+	--direction: reverse;
+}
+
+/* PAUSING THE ANIMATION ON HOVER */
+.tagScroller:hover .tagList {
+	animation-play-state: paused;
+}
+
+@keyframes horizontal-scroll {
+	to {
+		/*	0.75rem FOR HALF THE GAP
+				OF THE .tag-scroller
+		*/
+		transform: translateX(calc(-50% - .75rem));
+	}
+}
+@media screen and (max-width: 570px) {
+	.tagList li {
+		font-family: system-ui;
+		font-size: 10px;
+		line-height: 1;
+		padding: 5px;
+		border: 2px solid var(--border);
+		border-radius: 10ch;
+		white-space: nowrap;
+	}
+	.tagScroller {
+		display: grid;
+		gap: 10px;
+		mask: linear-gradient(90deg, #0000, var(--background) 15%, var(--background) 85%, #0000);
+	}
+	
+	.tagList {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px;
+	}
+}

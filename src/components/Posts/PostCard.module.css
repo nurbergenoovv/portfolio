@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: "Manrope";
+  font-size: 16px;
+  --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+  --color: #27CF7E
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.noti {
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-bottom: 15px;
+  background: #282d35;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.noti:before {
+  position: absolute;
+  content: "";
+  inset: 0.0625rem;
+  border-radius: 0.9375rem;
+  background: #282d35;
+  z-index: 2
+}
+/* .noti:after {
+  position: absolute;
+  content: "";
+  width: 0.25rem;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gradient);
+  transition: transform 300ms ease;
+  z-index: 4;
+} */
+.noti:hover:after {
+  transform: translateX(0.15rem)
+}
+
+.notititle {
+  color: var(--color);
+  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+.noti:hover .notititle {
+  transform: translateX(0.15rem)
+}
+.notibody {
+  font-family: "Manrope";
+  color: #99999d;
+  padding-inline: 20px;
+  transition: transform 300ms ease;
+  z-index: 5;
+  font-size: calc(16px / 1.25);
+  font-weight: 400;
+}
+.noti:hover .notibody {
+  transform: translateX(0.25rem)
+}
+
+.notiglow, .notiborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, white, transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.notiglow { z-index: 3; }
+.notiborderglow { z-index: 1; }
+
+.noti:hover .notiglow {opacity: 0.1}
+.noti:hover .notiborderglow {opacity: 0.1}
+
+
+.note {
+  color: var(--color);
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  width: 75%;
+}
+
+@media screen and (max-width:570px) {
+  .notititle{
+    font-size: 14px;
+    padding: 10px 15px 2px 15px;
+  }
+  .notibody{
+    font-size: calc(14px / 1.25);
+    padding-inline: 15px;
+  }
+  .noti{
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .notititle{
+    font-size: 13px;
+    padding: 7px 13px 2px 13px;
+  }
+  .notibody{
+    font-size: calc(12px / 1.25);
+    padding-inline: 13px;
+  }
+  .noti{
+    padding-bottom: 7px;
+  }
+}

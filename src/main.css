@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+
+@font-face {
+	font-family: 'Adver';
+	src: url('./avenirnextcyr-bold.ttf'); /* IE9 Compat Modes */
+}
+
+body {
+	background: #161b22;
+	color: #f5f5f5;
+	font-family: 'Adver';
+}
+
+  

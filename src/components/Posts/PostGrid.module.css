@@ -1,0 +1,47 @@
+/* PostGrid.module.css */
+.container {
+	display: grid;
+	gap: 20px;
+	padding: 20px;
+	max-width: 700px;
+	margin-inline: auto;
+  }
+  
+  .post {
+	background-color: #f0f0f0;
+	padding: 20px;
+	border-radius: 8px;
+	color: black;
+  }
+  
+  .fullWidth {
+	grid-column: 1 / -1;
+  }
+  
+  .twoColumn {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+  }
+  .sectionName{
+	font-size: 32px;
+	font-family: "Anta", sans-serif;
+	font-weight: 400;
+  }
+@media screen and (max-width: 580px) {
+	.twoColumn {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+	  }
+	  .container {
+		display: grid;
+		gap: 10px;
+		padding: 20px;
+		max-width: 700px;
+		margin-inline: auto;
+	  }
+	  .sectionName{
+		font-size: 24px;
+	  }
+}
